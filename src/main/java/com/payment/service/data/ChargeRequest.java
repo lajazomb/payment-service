@@ -1,16 +1,12 @@
 package com.payment.service.data;
 
+import ch.qos.logback.core.joran.sanity.Pair;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class ChargeRequest {
-
-    public enum Currency {
-        EUR, USD;
-    }
-    private String description;
-    private int amount;
-    private Currency currency;
-    private String stripeEmail;
+    private List<Pair<String, Integer>> idAndQuantity;
     private String stripeToken;
 }
