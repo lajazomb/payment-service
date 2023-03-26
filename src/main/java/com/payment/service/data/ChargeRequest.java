@@ -7,5 +7,5 @@ import java.util.List;
 
 @Data
 public class ChargeRequest {
-    private List<Pair<String, Integer>> idAndQuantity;
+    private List<ChargeEntry> chargeEntries;
 }

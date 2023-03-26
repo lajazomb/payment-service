@@ -2,6 +2,7 @@ package com.payment.service.controller;
 
 import ch.qos.logback.core.joran.sanity.Pair;
 import com.payment.service.ServiceApplication;
+import com.payment.service.data.ChargeEntry;
 import com.payment.service.data.ChargeRequest;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
@@ -48,9 +49,9 @@ public class ChargeController {
             return ResponseEntity.status(HttpStatus.OK).body(responseBody);
         } else {
             List<SessionCreateParams.LineItem> lineItems = new ArrayList<>();
-            for (Pair<String, Integer> entry : chargeRequest.getIdAndQuantity()) {
-                Product product = Product.retrieve(entry.first);
-                lineItems.add(SessionCreateParams.LineItem.builder().setQuantity(entry.second.longValue())
+            for (ChargeEntry entry : chargeRequest.getChargeEntries()) {
+                Product product = Product.retrieve(entry.getProductId());
+                lineItems.add(SessionCreateParams.LineItem.builder().setQuantity(entry.getQuantity().longValue())
                         .setName(product.getName()).setPrice(product.getDefaultPrice())
                         .setCurrency("eur").setDescription(product.getDescription())
                         .build());
