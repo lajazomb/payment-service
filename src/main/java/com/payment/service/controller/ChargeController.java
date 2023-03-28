@@ -15,7 +15,6 @@ import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.validation.Valid;
-import com.google.gson.JsonSyntaxException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,7 +49,7 @@ public class ChargeController {
         if (chargeRequest == null) {
             Map<String, String> responseBody = new HashMap<>();
             responseBody.put("url", frontendUrl);
-            return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
         } else {
             List<SessionCreateParams.LineItem> lineItems = new ArrayList<>();
             for (ChargeEntry entry : chargeRequest.getChargeEntries()) {
@@ -60,7 +59,6 @@ public class ChargeController {
                         .setPrice(product.getDefaultPrice())
                         .build());
             }
-
 
             Session session = Session.create(createSessionParams(lineItems));
             logger.info(session.getStatus());
