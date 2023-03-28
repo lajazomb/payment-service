@@ -1,13 +1,12 @@
 package com.payment.service.controller;
 
-import com.payment.service.ServiceApplication;
+import com.payment.service.PaymentServiceApplication;
 import com.payment.service.data.ChargeEntry;
 import com.payment.service.data.ChargeRequest;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.*;
 import com.stripe.model.checkout.Session;
-import com.stripe.net.Webhook;
 import jakarta.annotation.PostConstruct;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
@@ -35,7 +34,7 @@ public class ChargeController {
     @Value("${frontend.url}")
     private String frontendUrl;
 
-    Logger logger = LoggerFactory.getLogger(ServiceApplication.class);
+    Logger logger = LoggerFactory.getLogger(PaymentServiceApplication.class);
 
     @PostConstruct
     public void init() {
