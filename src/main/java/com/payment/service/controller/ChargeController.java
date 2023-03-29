@@ -67,7 +67,7 @@ public class ChargeController {
         }
     }
 
-    private SessionCreateParams createSessionParams(List<SessionCreateParams.LineItem> items) {
+    SessionCreateParams createSessionParams(List<SessionCreateParams.LineItem> items) {
         return SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
                 .setShippingAddressCollection(
@@ -239,6 +239,10 @@ public class ChargeController {
         return ResponseEntity.ok().build();
     }*/
 
+    /*
+
+    Methods you would use with the webhook to send emails, place orders, etc.
+
     private void createOrder(Session session) {
         // here you would create an order to be placed
         logger.info("Creating order...");
@@ -275,7 +279,7 @@ public class ChargeController {
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
-    }
+    }*/
 
     @ExceptionHandler(StripeException.class)
     public ResponseEntity<Object> handleError(StripeException ex) {
