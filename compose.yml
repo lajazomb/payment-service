@@ -3,7 +3,7 @@ services:
   payment_service:
     container_name: payment_service
     build:
-      context: ./
-      dockerfile: src/main/resources/Dockerfile
+      context: /Users/younes/Desktop/payment-service
+      dockerfile: /Users/younes/Desktop/payment-service/src/main/resources/Dockerfile
     ports:
-      - "8082:8080"
+      - "28083:8080"
